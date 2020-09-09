@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       res.send(JSON.parse(cards));
     })
     .catch(() => {
-      res.status(404);
+      res.status(500);
       res.send({ message: 'Requested resource not found' });
     });
 });

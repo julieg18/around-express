@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
       res.send(JSON.parse(users));
     })
     .catch(() => {
-      res.status(404);
+      res.status(500);
       res.send({ message: 'Requested resource not found' });
     });
 });
@@ -33,7 +33,7 @@ router.get('/:userId', (req, res) => {
       res.send(user);
     })
     .catch(() => {
-      res.status(404);
+      res.status(500);
       res.send({ message: 'Requested resource not found' });
     });
 });
