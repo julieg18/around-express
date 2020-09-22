@@ -29,6 +29,4 @@ server.use('/', (req, res) => {
   res.send({ message: 'Requested resource not found' });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+server.listen(PORT);
