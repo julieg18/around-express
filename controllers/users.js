@@ -45,4 +45,21 @@ function createUser(req, res) {
     });
 }
 
-module.exports = { getUsers, getUser, createUser };
+function updateUserProfile(req, res) {
+  const { _id } = req.user;
+  const { name, about } = req.body;
+
+  UserModel.findByIdAndUpdate(
+    _id,
+    { name, about },
+    { new: true, runValidators: true },
+  )
+    .then((updatedUser) => {
+      res.send({ updatedUser });
+    })
+    .catch((err) => {
+      sendError({ res, err, defaultErrMessage: 'user could not be updated' });
+    });
+}
+
+module.exports = { getUsers, getUser, createUser, updateUserProfile };
