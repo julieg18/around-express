@@ -47,4 +47,32 @@ function deleteCard(req, res) {
     });
 }
 
-module.exports = { getCards, createCard, deleteCard };
+function likeCard(req, res) {
+  const { cardId } = req.params;
+  const { _id } = req.user;
+  CardModel.findByIdAndUpdate(
+    cardId,
+    { $addToSet: { likes: _id } },
+    { new: true },
+  )
+    .then((updatedCard) => {
+      res.send(updatedCard);
+    })
+    .catch((err) => {
+      sendError({ err, res, defaultErrMessage: 'card could not be liked' });
+    });
+}
+
+function dislikeCard(req, res) {
+  const { cardId } = req.params;
+  const { _id } = req.user;
+  CardModel.findByIdAndUpdate(cardId, { $pull: { likes: _id } }, { new: true })
+    .then((updatedCard) => {
+      res.send(updatedCard);
+    })
+    .catch((err) => {
+      sendError({ err, res, defaultErrMessage: 'card could not be disliked' });
+    });
+}
+
+module.exports = { getCards, createCard, deleteCard, likeCard, dislikeCard };
