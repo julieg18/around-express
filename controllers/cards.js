@@ -4,7 +4,7 @@ const { sendError } = require('../utils/utils');
 function getCards(req, res) {
   CardModel.find({})
     .then((cards) => {
-      res.send({ cards });
+      res.send(cards);
     })
     .catch((err) => {
       sendError({
@@ -20,7 +20,7 @@ function createCard(req, res) {
   const { _id: owner } = req.user;
   CardModel.create({ name, link, owner })
     .then((card) => {
-      res.status(201).send({ card });
+      res.status(201).send(card);
     })
     .catch((err) => {
       sendError({
@@ -36,7 +36,7 @@ function deleteCard(req, res) {
 
   CardModel.findByIdAndRemove(cardId)
     .then((card) => {
-      res.send({ card });
+      res.send(card);
     })
     .catch((err) => {
       sendError({

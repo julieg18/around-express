@@ -4,7 +4,7 @@ const { sendError } = require('../utils/utils');
 function getUsers(req, res) {
   UserModel.find({})
     .then((users) => {
-      res.send({ users });
+      res.send(users);
     })
     .catch((err) => {
       sendError({
@@ -19,7 +19,7 @@ function getUser(req, res) {
   const { userId } = req.params;
   UserModel.findById(userId)
     .then((user) => {
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       sendError({
@@ -34,7 +34,7 @@ function createUser(req, res) {
   const { name, about, avatar } = req.body;
   UserModel.create({ name, about, avatar })
     .then((user) => {
-      res.send({ user });
+      res.send(user);
     })
     .catch((err) => {
       sendError({
@@ -55,7 +55,7 @@ function updateUserProfile(req, res) {
     { new: true, runValidators: true },
   )
     .then((updatedUser) => {
-      res.send({ updatedUser });
+      res.send(updatedUser);
     })
     .catch((err) => {
       sendError({ res, err, defaultErrMessage: 'user could not be updated' });
