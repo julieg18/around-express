@@ -58,8 +58,39 @@ function updateUserProfile(req, res) {
       res.send(updatedUser);
     })
     .catch((err) => {
-      sendError({ res, err, defaultErrMessage: 'user could not be updated' });
+      sendError({
+        res,
+        err,
+        defaultErrMessage: 'user profile could not be updated',
+      });
     });
 }
 
-module.exports = { getUsers, getUser, createUser, updateUserProfile };
+function updateUserAvatar(req, res) {
+  const { _id } = req.user;
+  const { avatar } = req.body;
+
+  UserModel.findByIdAndUpdate(
+    _id,
+    { avatar },
+    { new: true, runValidators: true },
+  )
+    .then((updatedUser) => {
+      res.send(updatedUser);
+    })
+    .catch((err) => {
+      sendError({
+        res,
+        err,
+        defaultErrMessage: 'user avatar could not be updated',
+      });
+    });
+}
+
+module.exports = {
+  getUsers,
+  getUser,
+  createUser,
+  updateUserProfile,
+  updateUserAvatar,
+};
