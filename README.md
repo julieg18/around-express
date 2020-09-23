@@ -1,11 +1,6 @@
-# Around the U.S. Front End + Back End
+# Around the U.S. Back End
 
 ## Directories
-
-`/public` — static files from the build of the React front-end app.
-
-`/data` — JSON files to temporarily emulate database integration.
-
 `/routes` — routing files.
 
 All other directories are optional and may be created by the developer if necessary. 
