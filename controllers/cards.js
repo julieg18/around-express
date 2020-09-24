@@ -7,11 +7,7 @@ function getCards(req, res) {
       res.send(cards);
     })
     .catch((err) => {
-      sendError({
-        res,
-        err,
-        defaultErrMessage: 'cards could not be retrieved',
-      });
+      sendError({ err, res });
     });
 }
 
@@ -26,7 +22,7 @@ function createCard(req, res) {
       sendError({
         res,
         err,
-        defaultErrMessage: 'card could not be created',
+        validationErrMessage: 'Card validation failed',
       });
     });
 }
@@ -42,7 +38,7 @@ function deleteCard(req, res) {
       sendError({
         res,
         err,
-        defaultErrMessage: 'card could not be deleted',
+        castErrMessage: 'Card not found',
       });
     });
 }
@@ -59,7 +55,7 @@ function likeCard(req, res) {
       res.send(updatedCard);
     })
     .catch((err) => {
-      sendError({ err, res, defaultErrMessage: 'card could not be liked' });
+      sendError({ err, res, castErrMessage: 'Card not found' });
     });
 }
 
@@ -71,7 +67,7 @@ function dislikeCard(req, res) {
       res.send(updatedCard);
     })
     .catch((err) => {
-      sendError({ err, res, defaultErrMessage: 'card could not be disliked' });
+      sendError({ err, res, castErrMessage: 'Card not found' });
     });
 }
 

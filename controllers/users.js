@@ -7,11 +7,7 @@ function getUsers(req, res) {
       res.send(users);
     })
     .catch((err) => {
-      sendError({
-        res,
-        err,
-        defaultErrMessage: 'users could not be retrieved',
-      });
+      sendError({ res, err });
     });
 }
 
@@ -25,7 +21,7 @@ function getUser(req, res) {
       sendError({
         res,
         err,
-        defaultErrMessage: 'user could not be retrieved',
+        castErrMessage: 'User not found',
       });
     });
 }
@@ -40,7 +36,7 @@ function createUser(req, res) {
       sendError({
         res,
         err,
-        defaultErrMessage: 'user could not be created',
+        validationErrMessage: 'User validation failed',
       });
     });
 }
@@ -61,7 +57,7 @@ function updateUserProfile(req, res) {
       sendError({
         res,
         err,
-        defaultErrMessage: 'user profile could not be updated',
+        validationErrMessage: 'User validation failed',
       });
     });
 }
@@ -82,7 +78,7 @@ function updateUserAvatar(req, res) {
       sendError({
         res,
         err,
-        defaultErrMessage: 'user avatar could not be updated',
+        validationErrMessage: 'User validation failed',
       });
     });
 }

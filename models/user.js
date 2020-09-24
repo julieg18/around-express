@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { urlRegex } = require('../utils/utils');
 
 const { Schema, model } = mongoose;
 
@@ -20,8 +21,7 @@ const userSchema = new Schema({
     type: String,
     validate: {
       validator(val) {
-        const regex = /^https?:\/\/(www\.)?\S+#?$/;
-        return regex.test(val);
+        return urlRegex.test(val);
       },
       message: 'invalid url',
     },
